@@ -38,6 +38,8 @@ module JutulDarcy
     export PhaseRelativePermeability
     export FlowBoundaryCondition
     export ReservoirSimResult
+    export write_egrid_jutuldarcy, write_init_jutuldarcy, write_restart_jutuldarcy
+    export write_summary_jutuldarcy, write_results_jutuldarcy, read_restart_jutuldarcy
     export reservoir_domain
     export reservoir_model
     export setup_reservoir_model
@@ -194,6 +196,9 @@ module JutulDarcy
 
     # Various input tricks
     include("io.jl")
+    include("ResultIO/ResultIO.jl")
+    using .ResultIO: write_egrid_jutuldarcy, write_init_jutuldarcy, write_restart_jutuldarcy,
+        write_summary_jutuldarcy, write_results_jutuldarcy, read_restart_jutuldarcy
     include("linsolve.jl")
     include("cpr.jl")
     include("deck_support.jl")

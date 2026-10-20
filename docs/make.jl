@@ -365,6 +365,7 @@ function build_jutul_darcy_docs(
                     "man/basics/input_files.md",
                     "man/basics/systems.md",
                     "man/basics/solution.md",
+                    "man/basics/standard_io.md",
                 ],
                 "Detailed API" => [
                     "man/basics/wells.md",

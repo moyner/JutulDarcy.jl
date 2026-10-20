@@ -8,6 +8,10 @@ end
     include("utils.jl")
 end
 
+@testitem "Industry standard format I/O" begin
+    include("standardio.jl")
+end
+
 @testitem "Rel. Perm." begin
     include("relperm.jl")
 end
