@@ -1,6 +1,6 @@
 using Test, Jutul, JutulDarcy, Adapt, CUDA
 using JutulDarcy.StaticArrays: SVector
-using Jutul.KernelExecution: KernelAbstractions
+using KernelAbstractions
 using .KernelAbstractions: @kernel, @index
 
 CUDA.allowscalar(false)
@@ -58,7 +58,7 @@ end
         state0 = case.state0, parameters = case.parameters)
     for (backend, float_type) in (
             (KernelAbstractions.CPU(), Float64),
-            (Jutul.KernelExecution.KernelAbstractions.CPU(), Float32))
+            (KernelAbstractions.CPU(), Float32))
         simulator, = setup_reservoir_simulator(case;
             mode = :ka, ka_backend = backend, float_type,
             info_level = -1, linear_solver = nothing, timesteps = :none)

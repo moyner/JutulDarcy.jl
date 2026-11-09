@@ -1,5 +1,5 @@
 using Jutul, JutulDarcy
-using Jutul.KernelExecution: KernelAbstractions
+using KernelAbstractions
 using Test
 
 import JutulDarcy: simulate_mini_wellcase
@@ -235,7 +235,7 @@ end
 
         @testset "2ph Krylov and KA backends" begin
             backends = (
-                cpu = Jutul.KernelExecution.KernelAbstractions.CPU(),
+                cpu = KernelAbstractions.CPU(),
             )
             for (backend_name, ka_backend) in pairs(backends)
                 for linear_solver in (:bicgstab, :gmres)

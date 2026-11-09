@@ -1,5 +1,5 @@
 using Jutul, JutulDarcy
-using Jutul.KernelExecution: KernelAbstractions
+using KernelAbstractions
 using MultiComponentFlash
 using ForwardDiff
 using SparseArrays
@@ -50,7 +50,7 @@ end
     rhs = ones(T, 4)
     increment = zeros(T, 4)
     context = Jutul.KernelAbstractionsContext(
-        Jutul.KernelExecution.KernelAbstractions.CPU();
+        KernelAbstractions.CPU();
         float_type = T, index_type = Int32)
     pressure = AMGPreconditioner(:aggregation;
         smoother_type = :spai0, coarse_size = 2)
@@ -333,7 +333,7 @@ end
         reduce_memory = name == :two_phase
         simulator, config = setup_reservoir_simulator(case;
             mode = :ka,
-            ka_backend = Jutul.KernelExecution.KernelAbstractions.CPU(),
+            ka_backend = KernelAbstractions.CPU(),
             group_execution = group_execution,
             float_type = Float32,
             index_type = Int32,
@@ -365,7 +365,7 @@ end
 
     mixed_simulator, mixed_config = setup_reservoir_simulator(cases.two_phase;
         mode = :ka,
-        ka_backend = Jutul.KernelExecution.KernelAbstractions.CPU(),
+        ka_backend = KernelAbstractions.CPU(),
         float_type = Float32,
         index_type = Int32,
         linear_float_type = Float64,
@@ -493,7 +493,7 @@ end
         ["CarbonDioxide", "Water"])
     kvalue = MultiComponentFlash.KValuesEOS([0.05, 5.0], mixture)
     context = Jutul.KernelAbstractionsContext(
-        Jutul.KernelExecution.KernelAbstractions.CPU();
+        KernelAbstractions.CPU();
         float_type = Float32)
 
     for (eos, composition) in ((cubic, Float32[0.6, 0.1, 0.3]),
@@ -730,7 +730,7 @@ end
     for sim in (simulator, storage.forward, storage.backward)
         @test sim.model.context isa KernelAbstractionsContext
         @test sim.model.context.backend isa
-            Jutul.KernelExecution.KernelAbstractions.CPU
+            KernelAbstractions.CPU
         @test length(sim.model.group_execution) == length(sim.model.models)
         @test all(==(SolveFullyOnDevice), sim.model.group_execution)
         @test !haskey(sim.storage, :host_evaluation)

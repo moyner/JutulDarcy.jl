@@ -1,5 +1,5 @@
 using Jutul, JutulDarcy, Test, SparseArrays, CUDA
-using Jutul.KernelExecution: KernelAbstractions
+using KernelAbstractions
 
 function cprw_bhp_test_case(; merged = false)
     bar = si_unit(:bar)

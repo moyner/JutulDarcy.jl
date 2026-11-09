@@ -1437,7 +1437,7 @@ function setup_reservoir_simulator(case::JutulCase;
             workgroupsize = ka_workgroupsize,
             reduce_memory = reduce_memory)
         if ismissing(group_execution)
-            is_cpu = ka_backend isa Jutul.KernelExecution.KernelAbstractions.CPU
+            is_cpu = Jutul.is_cpu_backend(ka_context)
             if is_cpu
                 group_execution = Dict{Symbol, Jutul.DeviceExecutionMode}(
                     :default => Jutul.SolveFullyOnDevice

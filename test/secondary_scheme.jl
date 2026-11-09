@@ -1,3 +1,4 @@
+using KernelAbstractions
 using Jutul, JutulDarcy, Test
 
 @testset "Reservoir secondary-variable scheduling" begin
@@ -40,7 +41,7 @@ end
         case = JutulDarcy.setup_mini_wellcase(:immiscible_2ph;
             nstep = 1, total_time = 0.1, secondary_scheme = scheme, minbatch = 1)
         simulator, config = setup_reservoir_simulator(case;
-            mode = :ka, ka_backend = Jutul.KernelExecution.KernelAbstractions.CPU(),
+            mode = :ka, ka_backend = KernelAbstractions.CPU(),
             linear_solver = nothing, timesteps = :none, info_level = -1,
             error_on_incomplete = true)
         @test secondary_scheme(simulator.model) == scheme

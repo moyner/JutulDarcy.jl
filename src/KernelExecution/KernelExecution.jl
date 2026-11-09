@@ -2,7 +2,7 @@ module KernelExecution
     import Adapt
     using Jutul
     import MultiComponentFlash
-    import Jutul.KernelExecution: KernelAbstractions
+    import KernelAbstractions
     using .KernelAbstractions: @Const, @index, @kernel
     using LinearAlgebra
     using SparseArrays: nonzeros

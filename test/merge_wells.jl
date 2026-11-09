@@ -1,5 +1,5 @@
 using Jutul, JutulDarcy, Test
-using Jutul.KernelExecution: KernelAbstractions
+using KernelAbstractions
 
 @testset "Merged wells" begin
     bar = si_unit(:bar)
@@ -35,7 +35,7 @@ using Jutul.KernelExecution: KernelAbstractions
         well = physical_representation(merged.model.models[source])
         multiwell = well.multiwell
         @test multiwell isa JutulDarcy.MultiWellInfo
-        cpu_backend = Jutul.KernelExecution.KernelAbstractions.CPU()
+        cpu_backend = KernelAbstractions.CPU()
         for target in (nothing, Array, KernelAbstractionsContext(cpu_backend))
             adapted = JutulDarcy.Adapt.adapt(target, multiwell)
             if target isa KernelAbstractionsContext

@@ -1,9 +1,10 @@
+using KernelAbstractions
 using Jutul
 using JutulDarcy
 using Test
 using Adapt
 
-const f32_backend = Jutul.KernelExecution.KernelAbstractions.CPU()
+const f32_backend = KernelAbstractions.CPU()
 const f32_step = 0.01*si_unit(:day)
 
 function short_reservoir_case(case)

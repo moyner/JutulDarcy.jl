@@ -1,3 +1,4 @@
+using KernelAbstractions
 using Test, Jutul, JutulDarcy, Adapt
 using JutulDarcy.MultiComponentFlash
 using JutulDarcy.StaticArrays: SVector
@@ -116,7 +117,7 @@ end
         100.0*weighted_component - p/rho^2*0.2]
     @test ForwardDiff.gradient(liquid_energy, [p, T]) ≈ expected
 
-    context = KernelAbstractionsContext(Jutul.KernelExecution.KernelAbstractions.CPU();
+    context = KernelAbstractionsContext(KernelAbstractions.CPU();
         float_type = Float32, index_type = Int32)
     adapted = Adapt.adapt(context, variable)
     @test eltype(adapted.tab[1].F) === SVector{3, Float32}
